@@ -1,25 +1,19 @@
 import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { Router, browserHistory } from 'react-router';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import AboutHomePage from "./components/about/AboutHomePage";
-import HomePage from "./components/home/HomePage";
-import App from "./components/App";
+import '../styles.css';
+import allRoutes from "./routes";
+import configureStore from "./store/configureStore";
+import {Provider} from "react-redux";
+import {loadRepos} from "./actions/reposActions";
 
-// render (
-//     <Router history={browserHistory}
-//         route={route}
-//     />,
-//     document.getElementById('mainApp')
-// );
+const store = configureStore();
+store.dispatch(loadRepos());
+
 render(
-    <Router history={browserHistory} >
-      <div>
-        <Route path="/" component={App}>
-            <IndexRoute component={HomePage}/>
-            <Route path="about" component={AboutHomePage}/>
-        </Route>
-      </div>
-    </Router>,
+    <Provider store={store}>
+        <Router history={browserHistory} routes={allRoutes} />
+    </Provider>,
     document.getElementById('mainApp'));
