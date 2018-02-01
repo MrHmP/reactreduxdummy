@@ -21,10 +21,13 @@ class CoursePage extends React.Component{
         const course = this.state.course;
         course.title = event.target.value;
         this.setState({course: course});
+
+        //this.props.dispatch(editCourse(event.target.value))
     }
 
     onSaveClick(){
-        this.props.dispatch(courseAction(this.state.course));
+        this.props.createCourse(this.state.course);
+        console.log(this.props.courses);
     }
 
     showCourseDetails(val,index){
@@ -54,4 +57,10 @@ const mapStateToProps = function(state){
     };
 };
 
-export default connect(mapStateToProps)(CoursePage);
+const mapDispatchoProps = function(dispatch){
+    return {
+        createCourse: course => dispatch(courseAction(course))
+    };
+};
+
+export default connect(mapStateToProps,mapDispatchoProps)(CoursePage);

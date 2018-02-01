@@ -6,8 +6,10 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import allRoutes from "./routes";
 import configureStore from "./store/configureStore";
 import {Provider} from "react-redux";
+import {loadRepos} from "./actions/reposActions";
 
 const store = configureStore();
+store.dispatch(loadRepos());
 
 render(
     <Provider store={store}>
