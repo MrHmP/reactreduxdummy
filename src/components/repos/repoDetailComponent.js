@@ -1,17 +1,19 @@
 import React,{PropTypes} from "react";
 import Moment from "moment";
+import AddCourseAction from "../../actions/courseActions";
+import { connect } from "react-redux";
 /* eslint-disable no-console */
 
 class RepoDetails extends React.Component{
 
     constructor(props,context){
         super(props,context);
-        this.onRepoClicked = this.onRepoClicked.bind( );
+        this.onRepoClicked = this.onRepoClicked.bind(this);
     }
 
     onRepoClicked(e){
-        debugger
-        console.log("hello");
+        const courseToAdd = {"title":e.target.parentElement.parentElement.firstChild.innerText};
+        this.props.addRepoToCourse(courseToAdd);
     }
 
     render(){
@@ -22,8 +24,8 @@ class RepoDetails extends React.Component{
                 <td>{repoInfo.name}</td>
                 <td>{repoInfo.language}</td>
                 <td>{Moment(repoInfo.updated_at).format("DD/MM/YYYY")}</td>
-                <td><a target="_blank" href={repoInfo.html_url}>View</a></td>
-                <td><a onClick={this.onRepoClicked} >Add Repo as Course</a></td>
+                <td><button className="btn btn-primary" target="_blank" href={repoInfo.html_url}>View on github</button></td>
+                <td><button className="btn btn-success" onClick={this.onRepoClicked} >Add Repo as Course</button></td>
             </tr>
         );
     }
@@ -33,15 +35,19 @@ RepoDetails.defaultProps = {};
 
 RepoDetails.propTypes = {
   repoInfo: PropTypes.shape({
-    items: PropTypes.Object,
-  }),
+    items: PropTypes.Object
+  })
 };
 
-// const mapStateToProps = function(state){
-//     return {
-//         repos: state.repos
-//     };
-// };
+const mapStateToProps = function(){
+    return {
+    };
+};
 
-// export default connect(mapStateToProps)(RepoDetails);
-export default RepoDetails;
+const matchDispatchToProps = function(dispatch){
+    return{
+        addRepoToCourse : repo=>{dispatch(AddCourseAction(repo));}
+    };
+};
+
+export default connect(mapStateToProps,matchDispatchToProps)(RepoDetails);

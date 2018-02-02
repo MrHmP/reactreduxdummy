@@ -1,6 +1,8 @@
 import React from "react";
 import courseAction from "../../actions/courseActions";
 import { connect } from "react-redux";
+import ViewAllCourses from "./ViewAllCoursesComponent";
+import AddCourse from "./AddCourseComponent";
 /* eslint-disable no-console */
 /* eslint-disable react/no-set-state */
 
@@ -8,44 +10,13 @@ class CoursePage extends React.Component{
 
     constructor(props,context){
         super(props,context);
-
-        this.state = {
-            course : { title: "" }
-        };
-
-        this.onTitleChange = this.onTitleChange.bind(this);
-        this.onSaveClick = this.onSaveClick.bind(this);
-    }
-
-    onTitleChange(event){
-        const course = this.state.course;
-        course.title = event.target.value;
-        this.setState({course: course});
-
-        //this.props.dispatch(editCourse(event.target.value))
-    }
-
-    onSaveClick(){
-        this.props.createCourse(this.state.course);
-        console.log(this.props.courses);
-    }
-
-    showCourseDetails(val,index){
-        return(<div key={index}>{val.title}</div>);
     }
 
     render(){
         return(
             <div>
-                <div className="jumbotron">
-                    <h1>Courses</h1>
-                    <div>{this.props.courses.map(this.showCourseDetails)}</div>
-                </div>
-                <div className="jumbotron">
-                    <h1>Add course</h1>
-                    <input type="text" value={this.state.course.title} onChange={this.onTitleChange}  />
-                    <input type="button" value="Save" onClick={this.onSaveClick} />
-                </div>
+                <ViewAllCourses allCourses={this.props.courses} />
+                <AddCourse />
             </div>
         );
     }
@@ -57,10 +28,4 @@ const mapStateToProps = function(state){
     };
 };
 
-const mapDispatchoProps = function(dispatch){
-    return {
-        createCourse: course => dispatch(courseAction(course))
-    };
-};
-
-export default connect(mapStateToProps,mapDispatchoProps)(CoursePage);
+export default connect(mapStateToProps,null)(CoursePage);
