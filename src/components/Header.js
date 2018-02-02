@@ -5,7 +5,7 @@ class Header extends React.Component{
     render(){
         return (
             <div>
-                <nav className="navbar navbar-default">
+                <nav className="navbar navbar-default navbar-fixed-top">
                     <div className="container-fluid">
                         <ul className="nav navbar-nav">
                             <Link to="" className="active navbar-brand">Home</Link>

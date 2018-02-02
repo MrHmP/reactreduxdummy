@@ -21,7 +21,7 @@ class ReposPage extends React.Component{
                     <ViewAllCourses allCourses={this.props.courses} />
                 </div> */}
                 <div className="jumbotron">
-                    <h1>Github Repos</h1>
+                    <h1>{this.props.userName.userName}'s Github Repos</h1>
                     <ToastContainer autoClose={2000}/>
                     <table className="table table-striped table-hover table-dark">
                         <thead className="thead-light">
@@ -45,7 +45,8 @@ class ReposPage extends React.Component{
 const mapStateToProps = function(state){
     return {
         courses: state.courses,
-        repos: state.repos
+        repos: state.repos,
+        userName: state.userName
     };
 };
 
