@@ -1,0 +1,7 @@
+.disable{
+    pointer-events: none;
+}
+
+.glyphicon{
+    padding-right: 2px;
+}

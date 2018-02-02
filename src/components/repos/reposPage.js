@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import RepoDetail from "./repoDetailComponent";
 import { ToastContainer } from 'react-toastify';
+import ReposActions from "../../actions/reposActions";
 // import ViewAllCourses from "../course/ViewAllCoursesComponent";
 
 class ReposPage extends React.Component{
@@ -12,6 +13,10 @@ class ReposPage extends React.Component{
 
     showRepoDetails(val,index){
         return(<RepoDetail key={index} repoInfo={val} />);
+    }
+
+    componentWillMount(){
+        this.props.getRepos(this.props.userName);
     }
 
     render(){
@@ -27,6 +32,7 @@ class ReposPage extends React.Component{
                         <thead className="thead-light">
                             <tr>
                                 <th>Repo Name</th>
+                                <th>Stats</th>
                                 <th>Languages</th>
                                 <th>Last Modified Date</th>
                                 <th>Actions</th>
@@ -50,4 +56,10 @@ const mapStateToProps = function(state){
     };
 };
 
-export default connect(mapStateToProps)(ReposPage);
+const mapDispatchToProps = function(dispatch){
+    return {
+        getRepos : (userName)=>{dispatch(ReposActions.loadRepos(userName));}
+    };
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(ReposPage);

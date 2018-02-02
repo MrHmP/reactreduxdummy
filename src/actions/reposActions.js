@@ -3,16 +3,18 @@ import actionType from "../ActionType";
 /* eslint-disable no-console */
 /* eslint-disable semi */
 
-export default function reposLoaded(state){
+const reposLoaded = function(state){
     return { type : actionType.REPOS_LOADED, repos: state };
 }
 
-export function loadRepos() {
-    return function(dispatch){
-        fetch("https://api.github.com/users/MrHmp/repos")
-         .then(res => res.json())
-         .then(
-           data => {dispatch(reposLoaded(data));}
-         );
+export default{
+    loadRepos: function (userName) {
+        return function(dispatch){
+            fetch(`https://api.github.com/users/${userName.userName}/repos`)
+             .then(res => res.json())
+             .then(
+               data => {dispatch(reposLoaded(data.sort((a,b) => new Date(b.updated_at) - new Date(a.updated_at))));}
+             );
+        }
     }
 }
