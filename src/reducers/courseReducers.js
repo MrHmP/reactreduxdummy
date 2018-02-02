@@ -8,8 +8,8 @@ export default function courseReducer(state = [],action){
         case actionType.CREATE_COURSE:
             return [...state,Object.assign({},action.state)];
 
-        case actionType.EDIT_COURSE:
-            return [...state,Object.assign({},action.state)];
+        case actionType.DELETE_COURSE:
+            return state.filter(x=>x.title!=action.state.title);
         default:
         return state;
     }
