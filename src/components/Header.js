@@ -7,9 +7,6 @@ class Header extends React.Component{
             <div>
                 <nav className="navbar navbar-default">
                     <div className="container-fluid">
-                        <div className="navbar-header">
-                            <Link to="" className="navbar-brand">Website Name</Link>
-                        </div>
                         <ul className="nav navbar-nav">
                             <Link to="" className="active navbar-brand">Home</Link>
                             <Link to="about" className="navbar-brand">About</Link>

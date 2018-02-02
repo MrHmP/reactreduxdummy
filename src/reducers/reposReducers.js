@@ -6,7 +6,6 @@ export default function courseReducer(state=[],action){
     switch(action.type)
     {
         case actionType.REPOS_LOADED:
-            debugger
             return action.repos;
 
         default:

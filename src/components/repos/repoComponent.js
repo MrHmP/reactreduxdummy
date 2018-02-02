@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+import RepoDetail from "./repoDetailComponent";
 /* eslint-disable no-console */
+/* eslint-disable no-debugger */
 
 class ReposPage extends React.Component{
 
@@ -10,11 +12,10 @@ class ReposPage extends React.Component{
         this.state = {
             repos: []
         };
-
     }
 
     showRepoDetails(val,index){
-        return(<div key={index}>{val.name}</div>);
+        return(<RepoDetail key={index} repoInfo={val} />);
     }
 
     render(){
@@ -22,7 +23,19 @@ class ReposPage extends React.Component{
             <div>
                 <div className="jumbotron">
                     <h1>Repos</h1>
-                    <div>{this.props.repos.map(this.showRepoDetails)}</div>
+                    <table className="table table-striped table-hover table-dark">
+                        <thead className="thead-light">
+                            <tr>
+                                <th>Repo Name</th>
+                                <th>Languages</th>
+                                <th>Last Modified Date</th>
+                                <th>View</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.props.repos.map(this.showRepoDetails)}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         );
@@ -30,7 +43,6 @@ class ReposPage extends React.Component{
 }
 
 const mapStateToProps = function(state){
-    debugger
     return {
         repos: state.repos
     };
