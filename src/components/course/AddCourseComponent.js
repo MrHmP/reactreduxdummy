@@ -47,7 +47,7 @@ const mapStateToProps = function(){
 
 const mapDispatchoProps = function(dispatch){
     return {
-        createCourse: course => dispatch(courseAction(course))
+        createCourse: course => dispatch(courseAction.createCourse(course))
     };
 };
 
