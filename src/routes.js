@@ -4,7 +4,7 @@ import App from "./components/App";
 import AboutHomePage from "./components/about/AboutHomePage";
 import HomePage from "./components/home/HomePage";
 import CoursePage from "./components/course/CoursePage";
-import ReposPage from "./components/repos/repoComponent";
+import ReposPage from "./components/repos/reposPage";
 
 export default (
     <Route path="/" component={App}>

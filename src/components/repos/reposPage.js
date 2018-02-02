@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import RepoDetail from "./repoDetailComponent";
-import ViewAllCourses from "../course/ViewAllCoursesComponent";
+// import ViewAllCourses from "../course/ViewAllCoursesComponent";
 /* eslint-disable no-console */
 /* eslint-disable no-debugger */
 
@@ -9,10 +9,6 @@ class ReposPage extends React.Component{
 
     constructor(props,context){
         super(props,context);
-
-        this.state = {
-            repos: []
-        };
     }
 
     showRepoDetails(val,index){
@@ -22,9 +18,9 @@ class ReposPage extends React.Component{
     render(){
         return(
             <div>
-                <div className="junmobtron">
+                {/* <div className="junmobtron">
                     <ViewAllCourses allCourses={this.props.courses} />
-                </div>
+                </div> */}
                 <div className="jumbotron">
                     <h1>Github Repos</h1>
                     <table className="table table-striped table-hover table-dark">

@@ -1,5 +1,4 @@
 import React from "react";
-import courseAction from "../../actions/courseActions";
 import { connect } from "react-redux";
 import ViewAllCourses from "./ViewAllCoursesComponent";
 import AddCourse from "./AddCourseComponent";
