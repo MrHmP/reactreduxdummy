@@ -5,12 +5,12 @@ import { Router, browserHistory } from 'react-router';
 import allRoutes from "./routes";
 import configureStore from "./store/configureStore";
 import {Provider} from "react-redux";
-import {loadRepos} from "./actions/reposActions";
+import userInfoUpdated from "./actions/userInfoActions";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../styles.css';
 
 const store = configureStore();
-store.dispatch(loadRepos());
+store.dispatch(userInfoUpdated({userName:"MrHmp"}));
 
 render(
     <Provider store={store}>
