@@ -11,12 +11,12 @@ class ReposPage extends React.Component{
         super(props,context);
     }
 
-    showRepoDetails(val,index){
-        return(<RepoDetail key={index} repoInfo={val} />);
-    }
-
     componentWillMount(){
         this.props.getRepos(this.props.userName);
+    }
+
+    showRepoDetails(val,index){
+        return(<RepoDetail key={index} repoInfo={val} />);
     }
 
     render(){
@@ -28,7 +28,7 @@ class ReposPage extends React.Component{
                 <div className="jumbotron">
                     <h1>{this.props.userName.userName}'s Github Repos</h1>
                     <ToastContainer autoClose={2000}/>
-                    <table className="table table-striped table-hover table-dark">
+                    <table className="table table-striped table-hover table-dark table-fixed">
                         <thead className="thead-light">
                             <tr>
                                 <th>Repo Name</th>
